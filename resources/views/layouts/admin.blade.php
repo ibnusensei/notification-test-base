@@ -12,10 +12,22 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        {{-- <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.js"></script> --}}
+        <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+        <script>
+
+            // Enable pusher logging - don't include this in production
+            // Pusher.logToConsole = true;
+
+            var pusher = new Pusher('916327066637a0dbc90c', {
+            cluster: 'ap1'
+            });
+
+        </script>
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
+            @include('layouts.admin-navigation')
 
             <!-- Page Heading -->
             @if (isset($header))

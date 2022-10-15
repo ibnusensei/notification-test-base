@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,10 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['role:admin', 'auth'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-    Route::post('markNotification', [AdminController::class, 'markNotification'])->name('markNotification');
+
+    Route::resource('user', AdminUserController::class)->only('index');
+    Route::get('/get-user', [AdminUserController::class, 'getUser'])->name('getUser');
+
+    Route::post('markNotification', [AdminUserController::class, 'markNotification'])->name('markNotification');
 });
 require __DIR__.'/auth.php';

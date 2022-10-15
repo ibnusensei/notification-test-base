@@ -2,11 +2,13 @@
 
 namespace App\Listeners;
 
+use App\Events\RegisteredUser;
 use App\Models\User;
 use App\Notifications\NewUserNotification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Notification;
+use Pusher\Pusher;
 
 class SendNewUserNotification
 {
@@ -32,6 +34,8 @@ class SendNewUserNotification
             $query->where('id', 1);
         })->get();
 
+        event(new RegisteredUser(['user' => $event->user]));
         Notification::send($admins, new NewUserNotification($event->user));
+
     }
 }
