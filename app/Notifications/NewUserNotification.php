@@ -29,7 +29,7 @@ class NewUserNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['database'];
+        return ['database', 'mail'];
     }
 
     /**
@@ -41,8 +41,8 @@ class NewUserNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
+                    ->line('Welcome to Mobile Legend')
+                    ->action('Go To Dashboard', url('/'))
                     ->line('Thank you for using our application!');
     }
 
