@@ -38,6 +38,8 @@ Route::post('/email/verification-notification', function (Request $request) {
 Auth::routes(['verify'=>true]);
 
 
+
+
 Route::get('/', function () {
     return view('welcome');
 });
